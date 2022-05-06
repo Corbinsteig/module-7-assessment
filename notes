@@ -1,0 +1,13 @@
+Runtime analysis
+      n    |       push     |       unshift     |
+-------------------------------------------------
+     10    |       79 μs    |     33.9 μs       |
+     100   |     92.5 μs    |     46.8 μs       |
+    1000   |    133.2 μs    |    167.4 μs       |
+   10000   |    503.5 μs    |    9.703 ms       |
+  100000   |    3.3992 ms   |    1.0254191 s    |
+
+
+After reading the results I came to a conclusion that the "append" or "push" functions scales better than the "unshift/insert". The unshift scales worst compared to push because unshift requires memory to be re-allocated which takes much longer than the push function, which just adds memory to the end without iterating through the entire array. You can see push scales better because when there are more n items the unshift scales worst and takes much longer than push.
+
+extra credit: the reson for the unshift() function being slower is due to the fact it takes the order of the array into consideration where as push just adds to the end of the array.
